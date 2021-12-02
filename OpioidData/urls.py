@@ -10,7 +10,7 @@ urlpatterns = [
     path("trends/", trendsPageView, name="trends"),
     path("prescribers/", allPrescriberPageView, name="prescribers"),
     path("drugs/", allDrugsPageView, name="drugs"),
-    path("prescriber/", singlePrescriberPageView, name="prescriber"),
+    path("prescriber/<int:npi>", singlePrescriberPageView, name="prescriber"),
     path("drug/", singleDrugPageView, name="drug"),
     path("", indexPageView, name="index"),
 ]
