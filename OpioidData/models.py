@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields import NOT_PROVIDED, BooleanField
+from django.db.models.deletion import DO_NOTHING
 
 # Create your models here.
 class Prescriber(models.Model) :
@@ -28,3 +29,21 @@ class Drug(models.Model) :
 
     def __str__(self) :
         return (self.drugname)
+
+class Credential(models.Model):
+    credential = models.CharField(max_length=15)
+    credential_code = models.IntegerField
+    class Meta:
+        db_table = "pd_credential"
+        
+class PrescriberCredential(models.Model):
+    credential_code = models.ForeignKey(Credential, on_delete=DO_NOTHING)
+    npi = models.IntegerField(blank=False)
+    class Meta:
+        db_table = "prescriber_credential"
+
+class Specialtie(models.Model):
+    specialty_title = models.CharField(max_length=70)
+    specialty_code = models.IntegerField
+    class Meta:
+        db_table = "pd_specialtie"
