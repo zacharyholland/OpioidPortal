@@ -2,69 +2,185 @@
 {% load static %}
 {% block content %}
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-          .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            width: 95%;
-            border-radius: 15px;
-            float:left;
-            margin: 15px;
-          }
-          
-          .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%);
-            color: #014ED5;
-          }
-          
-          .container {
-            padding: 2px 16px;
-          }
-
-          h4 {
-              font-family: open sans;
-          }
-
-          hr {
-            border-top: 1px dotted #014ED5;
-            width: 80%;
-          }
-
-          h3 {
-            text-align: center;
-            font-family: open sans;
-          }
-
-          form {
-            text-align: center;
-          }
-
-          button {
-            float: left;
-            margin-left: 15px;
-            margin-right: 15px;
-          }
+      .section1 {
+    
+    
+        padding-top: 25px;
+        padding-bottom: 25px;
+        display: flex;
+        justify-content: center;
+    
+    }
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 95%;
+        border-radius: 15px;
+        margin: 15px;
+        display: flex;
+        justify-content: center;
+      }
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%);
+        color: #014ED5;
+      }
+      .container3 {
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+      }
+      h4 {
+          font-family: open sans;
+      }
+      hr {
+        border-top: 1px dotted #014ED5;
+        width: 80%;
+      }
+      h3 {
+        text-align: center;
+        font-family: open sans;
+      }
+      form {
+        text-align: center;
+      }
+      <style>
+        * {box-sizing: border-box;}
+        
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .topnav {
+            overflow: hidden;
+            background-color: white;
+            width: 70%
+        }
+        
+        form {
+             text-align: left; 
+             margin-top: 5px;
+        }
+        
+        
+        
+        .topnav input[type=text] {
+            padding: 10px;
+            margin-top: 8px;
+            font-size: 16px;
+            border: 1px solid #E1E1E1;
+            font-family: 'open sans';
+            border-radius: 10px;
+            background-color: #FAFCFE;
+            width: 67%;
+        }
+        
+        .topnav .search-container button {
+            float: right;
+            padding-top: 14px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-top: 8px;
+            margin-left: 20px;
+            margin-right: 16px;
+            background: #014ED5;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+    
+        }
+        
+        .topnav .search-container button:hover {
+            opacity: 80%;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .topnav .search-container {
+            float: none;
+            }
+            .topnav a, .topnav input[type=text], .topnav .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+            }
+            .topnav input[type=text] {
+            border: 1px solid #ccc;  
+            
+            }
+            .fa fa-search {
+                color: white;
+            }
+        }
+    </style>
     </style>    
 </head>
 <body>
-<button type="button" class="button"><a href="{% url 'prescribers' %}">Prescriber Data</a></button>
-<button type="button" class="button"><a href="{% url 'drugs' %}">Drug Data</a></button><br><br><br><br>
-<form action="{% url 'drugsearch' name ='q' %}" method="get">
-  <input name='q' type="text" placeholder="Search...">
-</form>
-<h3>A - B - C - D - E - F - G - H - J - K - L - M - N - O - P - Q - R - S - T - U - V - W - X - Y - Z</h3>
+<!--Title and search bar  -->
+<div class = "section1">
+       
+  <div class = "row">
+      <div style = "display: flex;">
+          <div class = "column ">
+              <h2 style = "text-align: left; margin:0px;">Drugs</h2>
+              <p> The following is drugs have been prescribed by a prescriber atleast 10 times in the last year </p>
+          </div>
+          <div class = "column" style = "display: flex; justify-content:end;">
+              <div class="topnav" >
+                  <div style = "width: 100%">
+                      <h2 style = "text-align: left; margin:0px;">Search</h2>
+                  </div>
+                  <div class="search-container">
+                  <form action="/action_page.php">
+                      <input type="text" placeholder="Search.." name="search">
+                      <button type="submit"><i class="fa fa-search" style = "color: white"></i></button>
+                  </form>
+                  </div>
+              </div>
+          </div>
+          
+
+      </div>
+  </div>
+</div>  
 {% for Drug in drug %}
-<div class="card"><a href="{% url 'drug' %}">
-    <div class="container">
-      <h4><b>{{Drug.drugname}}</b></h4><hr>
-      {% if Drug.isopioid == "True" %}
-        <p>Opioid</p>
-      {% else %}
-        <p>Not Opioid</p>
-      {% endif %}
-    </div>
-</a></div>
+<div style = "display: flex; justify-content: center;">
+  <div class="card">
+      <a href="{% url 'drug' %}" style = "width: 100%">
+          <div class="container3">
+              <div style = "width: 40% ">
+                  <h4 style = "margin:10px;">{{Drug.drugname}}</h4>
+              </div>
+              <div style = "width: 30%">
+                  <hr style="height:2px;border-width:0;color:#014ED5;background-color:#014ED5">
+              </div>
+              <div style = "width: 20%; text-align: right;">
+                  <p>
+                    {% if Drug.isopioid == "True" %}
+                      <p>Opioid</p>
+                    {% else %}
+                      <p>Not Opioid</p>
+                    {% endif %}
+                  </p>
+              </div>
+              <div style = "width: 10%; text-align: right;">
+                  <img src="{% static 'img/arrow.png' %}" style = "height: 35px;">
+              </div>
+              
+          </div>
+      </a>
+  </div>
+</div>
 {% endfor %}
 </body>
 {% endblock %}

@@ -81,10 +81,10 @@ def addPageView(request) :
     else :
         return render(request, "OpioidData/add.html")
 
-def searchDrugsPageView(request, name) :
+def searchDrugsPageView(request, search) :
 
     context = {
-        "drug" : Drug.objects.filter(drugname__icontains=name)
+        "drug" : Drug.objects.filter(drugname__icontains=search)
     }
 
     return render(request, "OpioidData/drugsearch.html", context)

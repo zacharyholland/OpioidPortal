@@ -3,57 +3,71 @@
 {% block content %}
 <head>
     <style>
-          .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            width: 31%;
-            border-radius: 15px;
-            float:left;
-            margin: 15px;
-          }
-          
-          .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%);
-            color: #014ED5;
-          }
-          
-          .container {
-            padding: 2px 16px;
-          }
-
-          h4 {
-              font-family: open sans;
-          }
-
-          hr {
-            border-top: 1px dotted #014ED5;
-            width: 80%;
-          }
-
-          h3 {
-            text-align: center;
-            font-family: open sans;
-          }
-
-          form {
-            text-align: center;
-          }
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 95%;
+        border-radius: 15px;
+        margin: 15px;
+        display: flex;
+        justify-content: center;
+      }
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%);
+        color: #014ED5;
+      }
+      .container3 {
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+      }
+      h4 {
+          font-family: open sans;
+      }
+      hr {
+        border-top: 1px dotted #014ED5;
+        width: 80%;
+      }
+      h3 {
+        text-align: center;
+        font-family: open sans;
+      }
+      form {
+        text-align: center;
+      }
     </style>    
 </head>
-<button type="button" class="button"><a href="{% url 'prescribers' %}">Prescriber Data</a></button>
-<button type="button" class="button"><a href="{% url 'drugs' %}">View all Drugs</a></button>
 {% for Drug in drug %}
-<div class="card"><a href="{% url 'drug' %}">
-    <div class="container">
-      <h4><b>{{Drug.drugname}}</b></h4><hr>
-      {% if Drug.isopioid == "True" %}
-        <p>Opioid</p>
-      {% else %}
-        <p>Not Opioid</p>
-      {% endif %}
-    </div>
-</a></div>
+<div style = "display: flex; justify-content: center;">
+  <div class="card">
+      <a href="{% url 'drug' %}" style = "width: 100%">
+          <div class="container3">
+              <div style = "width: 40% ">
+                  <h4 style = "margin:10px;">{{Drug.drugname}}</h4>
+              </div>
+              <div style = "width: 30%">
+                  <hr style="height:2px;border-width:0;color:#014ED5;background-color:#014ED5">
+              </div>
+              <div style = "width: 20%; text-align: right;">
+                  <p>
+                    {% if Drug.isopioid == "True" %}
+                      <p>Opioid</p>
+                    {% elif Drug.isopioid == "False" %}
+                      <p>Not Opioid</p>
+                    {% endif %}
+                  </p>
+              </div>
+              <div style = "width: 10%; text-align: right;">
+                  <img src="{% static 'img/arrow.png' %}" style = "height: 35px;">
+              </div>           
+          </div>
+      </a>
+  </div>
+</div>
 {% endfor %}
 </body>
 {% endblock %}

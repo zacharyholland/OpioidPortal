@@ -2,7 +2,7 @@ from django.urls import path
 from .views import searchDrugsPageView, addPageView, deletePageView, updatePageView, editPageView, trendsPageView, allPrescriberPageView, allDrugsPageView, singlePrescriberPageView, singleDrugPageView, indexPageView
 
 urlpatterns = [
-    path("drugsearch/<str:name>", searchDrugsPageView, name="drugsearch"),
+    path("drugsearch/<str:search>", searchDrugsPageView, name="drugsearch"),
     path("add/", addPageView, name="add"),
     path("delete/<int:npi>/", deletePageView, name='delete'),
     path("update/", updatePageView, name="update"),
