@@ -96,17 +96,17 @@ def searchDrugsPageView(request) :
 
 def searchPrescribersNamePageView(request) :
     if request.method == "POST" :
-        searched = request.POST['searched']
-        prescribers = Prescriber.objects.filter(full_name__icontains=searched)
-        return render(request, "OpioidData/searchprescribersname.html", {'searched':searched, 'prescribers' : prescribers})
+        named = request.POST['named']
+        prescribers = Prescriber.objects.filter(Fname__icontains=named)
+        return render(request, "OpioidData/searchprescribersname.html", {'named':named, 'prescribers' : prescribers})
     else :
         return render(request, "OpioidData/searchprescribersname.html", {})
 
 def searchPrescribersNPIPageView(request) :
     if request.method == "POST" :
-        searched = request.POST['searched']
-        prescribers = Prescriber.objects.filter(npi__icontains=searched)
-        return render(request, "OpioidData/searchprescribersnpi.html", {'searched':searched, 'prescribers' : prescribers})
+        NPIed = request.POST['NPIed']
+        prescribers = Prescriber.objects.filter(npi__icontains=NPIed)
+        return render(request, "OpioidData/searchprescribersnpi.html", {'NPIed':NPIed, 'prescribers' : prescribers})
     else :
         return render(request, "OpioidData/searchprescribersnpi.html", {})
 
