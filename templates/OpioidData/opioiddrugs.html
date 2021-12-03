@@ -122,11 +122,8 @@
                 color: white;
             }
         }
-    </style>
     </style>    
 </head>
-<body>
-<!--Title and search bar  -->
 <div class = "section1">
        
   <div class = "row">
@@ -171,21 +168,18 @@
                   <p>
                     {% if Drug.isopioid == "True" %}
                       <p>Opioid</p>
-                    {% else %}
+                    {% elif Drug.isopioid == "False" %}
                       <p>Not Opioid</p>
                     {% endif %}
                   </p>
               </div>
               <div style = "width: 10%; text-align: right;">
                   <img src="{% static 'img/arrow.png' %}" style = "height: 35px;">
-              </div>
-              
+              </div>           
           </div>
       </a>
   </div>
 </div>
 {% endfor %}
-<a href="{% url 'opioiddrugs' %}">These are the opioids</a>
-<a href="{% url 'notopioiddrugs' %}">These are the non-opioids</a>
 </body>
 {% endblock %}

@@ -93,3 +93,21 @@ def searchDrugsPageView(request) :
         return render(request, "OpioidData/drugsearch.html", {'searched':searched, 'drugs' : drugs})
     else :
         return render(request, "OpioidData/drugsearch.html", {})
+
+def opioidDrugsPageView(request) :
+    data = Drug.objects.filter(isopioid__icontains=True)
+
+    context = {
+        "drug" : data
+    }
+
+    return render(request, 'OpioidData/opioiddrugs.html', context)
+
+def notOpioidDrugsPageView(request) :
+    data = Drug.objects.filter(isopioid__icontains=False)
+
+    context = {
+        "drug" : data
+    }
+
+    return render(request, 'OpioidData/notopioiddrugs.html', context)
