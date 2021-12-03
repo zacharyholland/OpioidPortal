@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Prescriber, Drug
 from django.db.models import Q
-from .forms import SearchDrugsForm
 
 # Create your views here.
 def indexPageView(request) :
@@ -91,10 +90,10 @@ def addPageView(request) :
     else :
         return render(request, "OpioidData/add.html")
 
-def searchDrugsPageView(request, search) :
-
-    context = {
-        "drug" : Drug.objects.filter(drugname__icontains=search)
-    }
-
-    return render(request, "OpioidData/drugsearch.html", context)
+def searchDrugsPageView(request) :
+    if request.method == "POST" :
+        searched = request.POST['searched']
+        drugs = Drug.objects.filter(drugname__icontains=searched)
+        return render(request, "OpioidData/drugsearch.html", {'searched':searched, 'drugs' : drugs})
+    else :
+        return render(request, "OpioidData/drugsearch.html", {})
