@@ -94,6 +94,22 @@ def searchDrugsPageView(request) :
     else :
         return render(request, "OpioidData/drugsearch.html", {})
 
+def searchPrescribersNamePageView(request) :
+    if request.method == "POST" :
+        searched = request.POST['searched']
+        prescribers = Prescriber.objects.filter(full_name__icontains=searched)
+        return render(request, "OpioidData/searchprescribersname.html", {'searched':searched, 'prescribers' : prescribers})
+    else :
+        return render(request, "OpioidData/searchprescribersname.html", {})
+
+def searchPrescribersNPIPageView(request) :
+    if request.method == "POST" :
+        searched = request.POST['searched']
+        prescribers = Prescriber.objects.filter(npi__icontains=searched)
+        return render(request, "OpioidData/searchprescribersnpi.html", {'searched':searched, 'prescribers' : prescribers})
+    else :
+        return render(request, "OpioidData/searchprescribersnpi.html", {})
+
 def opioidDrugsPageView(request) :
     data = Drug.objects.filter(isopioid__icontains=True)
 
@@ -111,3 +127,21 @@ def notOpioidDrugsPageView(request) :
     }
 
     return render(request, 'OpioidData/notopioiddrugs.html', context)
+
+def malePrescribersPageView(request) :
+    data = Prescriber.objects.filter(Gender__icontains='M')
+
+    context = {
+        "prescriber" : data
+    }
+
+    return render(request, 'OpioidData/male.html', context)
+
+def femalePrescribersPageView(request) :
+    data = Prescriber.objects.filter(Gender__icontains='F')
+
+    context = {
+        "prescriber" : data
+    }
+
+    return render(request, 'OpioidData/female.html', context)

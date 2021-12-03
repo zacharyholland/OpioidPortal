@@ -11,9 +11,19 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     <title>Document</title>
 </head>
+<style>
+    .navbar {
+        overflow: hidden;
+        position: fixed; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%; /* Full width */
+        z-index: 2;
+        
+        }
+</style>
 <body>
 <!-- Navigation-->
-<div class="section">
+<div class="section navbar">
     <div class="row">
         <div class= "column"><a href="{% url 'index' %}"> 
             <img src="{% static 'img/logo (4).png' %}" class ="img">
