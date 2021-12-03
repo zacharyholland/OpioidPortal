@@ -1,9 +1,0 @@
-{% block content %}
-{% if searched %}
-    {% for Drug in drugs %}
-        {{ Drug.drugname}}<br>
-    {% endfor %}
-{% else %}
-    <h1>You forgot to search</h1>
-{% endif %}
-{% endblock %}

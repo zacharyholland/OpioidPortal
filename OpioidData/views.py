@@ -24,18 +24,14 @@ def allDrugsPageView(request) :
 
     return render(request, 'OpioidData/drugs.html', context)
 
-def singlePrescriberPageView(request) :
-        if request.method == 'POST' :
-            npi = request.POST['npi']
+def singlePrescriberPageView(request, npi) :
+    data = Prescriber.objects.get(npi = npi)
 
-            prescriber = Prescriber.objects.get(npi=npi)
+    context = {
+        "record" : data
+    }
 
-            prescriber.Fname = request.POST['Fname']
-            prescriber.Lname = request.POST['Lname']
-            prescriber.Gender = request.POST['Gender']
-            prescriber.State = request.POST['State']
-
-        return render(request, "OpioidPortal/prescriber.html")
+    return render(request, 'OpioidData/prescriber.html', context)
 
 def trendsPageView(request) :
     return render(request, 'OpioidData/trends.html')
